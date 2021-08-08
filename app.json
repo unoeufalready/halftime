@@ -23,7 +23,8 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.unoeufalready.halftime",
-      "versionCode": 1
+      "permissions": [],
+      "versionCode": 3
     },
     "web": {
       "favicon": "./assets/favicon.png"

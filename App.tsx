@@ -5,7 +5,7 @@ import { StyleSheet, Text, TextInput, View } from "react-native";
 export default function App() {
   const [yourAge, setYourAge] = useState("");
   const [theirAge, setTheirAge] = useState("");
-  const [halfTime, setHalfTime] = useState(-1);
+  const [halfTime, setHalfTime] = useState(Infinity);
 
   function cleanAndSetAge(setter: (arg0: string) => void, text: string) {
     const sanitizedText: string = text.replace(/[^\d]/g, "");
@@ -18,7 +18,7 @@ export default function App() {
     function calculateHalfTime(): void {
       const i: number = parseInt(yourAge);
       const u: number = parseInt(theirAge);
-      const h: number = !isNaN(i) && !isNaN(u) ? u - i : -1;
+      const h: number = !isNaN(i) && !isNaN(u) ? u - i : Infinity;
       setHalfTime(h);
     },
     [yourAge, theirAge]
@@ -28,8 +28,8 @@ export default function App() {
     let styleName: any = styles.standardMessage;
     let message: string = "OK";
 
-    if (halfTime === -1) {
-      message = "Not sure how?";
+    if (halfTime === Infinity) {
+      message = "OK, ready to do some calculating!";
     } else if (halfTime < +yourAge) {
       styleName = styles.missed;
       message = "Aww... you missed it!";
@@ -60,8 +60,8 @@ export default function App() {
         onChangeText={text => cleanAndSetAge(setTheirAge, text)}
         defaultValue={theirAge}
       />
-      <Text style={styles.result}>{halfTime}</Text>
-      {renderEncouragement() || <Text>Wow</Text>}
+      <Text style={styles.result}>{Infinity === halfTime ? "" : halfTime}</Text>
+      {renderEncouragement()}
       <StatusBar style="auto" />
     </View>
   );
